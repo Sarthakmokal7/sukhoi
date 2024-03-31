@@ -1,0 +1,307 @@
+login as: amar
+amar@192.168.158.130's password:
+Access denied
+amar@192.168.158.130's password:
+Access denied
+amar@192.168.158.130's password:
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v24.0 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ⮞ SSH session to amar@192.168.158.130                                │
+    │   • Direct SSH      :  ✓                                             │
+    │   • SSH compression :  ✓                                             │
+    │   • SSH-browser     :  ✓                                             │
+    │   • X11-forwarding  :  ✓  (remote display is forwarded through SSH)  │
+    │                                                                      │
+    │ ⮞ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last failed login: Sun Mar 31 04:32:21 EDT 2024 from 192.168.158.1 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Sun Mar 31 03:55:58 2024 from 192.168.158.1
+[amar@amar ~]$
+[amar@amar ~]$ cat host
+cat: host: No such file or directory
+[amar@amar ~]$ pwd
+/home/amar
+[amar@amar ~]$ nano hosts
+[amar@amar ~]$ vi hosts
+[amar@amar ~]$ ls
+Desktop  Documents  Downloads  hosts  Music  Pictures  Public  Templates  Videos
+[amar@amar ~]$ cat hosts
+192.168.1.102
+[amar@amar ~]$ pwd
+/home/amar
+[amar@amar ~]$ ansible -i hosts 192.168.1.102 -m ping -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+The authenticity of host '192.168.1.102 (192.168.1.102)' can't be established.
+ECDSA key fingerprint is SHA256:+Skbvhi++FR+BNgQoHHdtXDM0iTfLyPEzskH43Za4uU.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+192.168.1.102 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '192.168.1.102' (ECDSA) to the list of known hosts.\r\nroot@192.168.1.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+[amar@amar ~]$ ansible -i hosts 192.168.1.102 -m ping -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@192.168.1.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+[amar@amar ~]$ ssh root@192.168.1.102
+root@192.168.1.102's password:
+
+[amar@amar ~]$ ssh-copy-id root@192.168.1.102
+/usr/bin/ssh-copy-id: ERROR: No identities found
+[amar@amar ~]$ ss
+ss                       ssh-add                  sshd                     sss_cache                sss_ssh_knownhostsproxy
+sscg                     ssh-agent                ssh-keygen               sssd
+ssh                      ssh-copy-id              ssh-keyscan              sss_ssh_authorizedkeys
+[amar@amar ~]$ ss
+ss                       ssh-add                  sshd                     sss_cache                sss_ssh_knownhostsproxy
+sscg                     ssh-agent                ssh-keygen               sssd
+ssh                      ssh-copy-id              ssh-keyscan              sss_ssh_authorizedkeys
+[amar@amar ~]$ ssh
+ssh          ssh-add      ssh-agent    ssh-copy-id  sshd         ssh-keygen   ssh-keyscan
+[amar@amar ~]$ ssh
+ssh          ssh-add      ssh-agent    ssh-copy-id  sshd         ssh-keygen   ssh-keyscan
+[amar@amar ~]$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/amar/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/amar/.ssh/id_rsa.
+Your public key has been saved in /home/amar/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:msfwStO1qOnA7PxK0mtDYPjM5LKOTcGlPDRGrDQUJBA amar@amar
+The key's randomart image is:
++---[RSA 3072]----+
+|E*o              |
+|.+.              |
+|.o= .            |
+|o=++             |
+| B*.  . S .      |
+|. =*.  B o .     |
+| oo.* = * .      |
+|oo =o+ *         |
+|o...==*          |
++----[SHA256]-----+
+[amar@amar ~]$ ssh-copy-id root@192.168.1.102
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/amar/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@192.168.1.102's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'root@192.168.1.102'"
+and check to make sure that only the key(s) you wanted were added.
+
+[amar@amar ~]$
+[amar@amar ~]$ ssh root@192.168.1.102
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Mar 30 23:43:09 2024
+[root@sarthak ~]#
+[root@sarthak ~]# exit
+logout
+Connection to 192.168.1.102 closed.
+[amar@amar ~]$ ansible -i hosts 192.168.1.102 -m ping -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+
+192.168.1.102 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[amar@amar ~]$
+[amar@amar ~]$ ansible -i hosts all -m command -a "df -h" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED | rc=0 >>
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        385M     0  385M   0% /dev
+tmpfs           400M     0  400M   0% /dev/shm
+tmpfs           400M   12M  388M   3% /run
+tmpfs           400M     0  400M   0% /sys/fs/cgroup
+/dev/nvme0n1p3   18G  5.6G   13G  32% /
+/dev/nvme0n1p1  283M  128M  136M  49% /boot
+tmpfs            80M   32K   80M   1% /run/user/42
+tmpfs            80M  4.6M   76M   6% /run/user/1000
+tmpfs            80M  4.0K   80M   1% /run/user/0
+[amar@amar ~]$ ansible -i hosts all -m command -a "hostname" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED | rc=0 >>
+sarthak
+[amar@amar ~]$ ansible -i hosts all -m command -a "fdisk -i" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | FAILED | rc=1 >>
+fdisk: invalid option -- 'i'
+Try 'fdisk --help' for more information.non-zero return code
+[amar@amar ~]$ ansible -i hosts all -m command -a "fdisk -l" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED | rc=0 >>
+Disk /dev/nvme0n1: 20 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x00d4d5a9
+
+Device         Boot   Start      End  Sectors  Size Id Type
+/dev/nvme0n1p1 *       2048   616447   614400  300M 83 Linux
+/dev/nvme0n1p2       616448  4810751  4194304    2G 82 Linux swap / Solaris
+/dev/nvme0n1p3      4810752 41943039 37132288 17.7G 83 Linux
+[amar@amar ~]$ ansible -i hosts all -m command -a "ip a" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED | rc=0 >>
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:8b:95:bf brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.102/24 brd 192.168.1.255 scope global dynamic noprefixroute ens160
+       valid_lft 7110sec preferred_lft 7110sec
+    inet6 fe80::9304:3aba:76d5:3761/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 52:54:00:87:c3:c2 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc fq_codel master virbr0 state DOWN group default qlen 1000
+    link/ether 52:54:00:87:c3:c2 brd ff:ff:ff:ff:ff:ff
+[amar@amar ~]$ ansible -i hosts all -m command -a "ls -l /home/teamBases" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | FAILED | rc=2 >>
+ls: cannot access '/home/teamBases': No such file or directorynon-zero return code
+[amar@amar ~]$ ansible -i hosts all -m command -a "ls -l /home/sarthak7" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED | rc=0 >>
+total 4
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Desktop
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Documents
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Downloads
+-rw-rw-r--. 1 sarthak7 sarthak7 16 Mar 31 01:45 hosts
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Music
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Pictures
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Public
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Templates
+drwxr-xr-x. 2 sarthak7 sarthak7  6 Mar 30 22:50 Videos
+[amar@amar ~]$ ansible -i hosts all -m user -a "name=pingpong state=present"
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: amar@192.168.1.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+[amar@amar ~]$ ssh root@192.168.1.102
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sun Mar 31 02:01:30 2024 from 192.168.1.150
+[root@sarthak ~]#
+[root@sarthak ~]#
+[root@sarthak ~]# exit
+logout
+Connection to 192.168.1.102 closed.
+[amar@amar ~]$ ansible -i hosts all -m user -a "name=akash  state=present"
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: amar@192.168.1.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+[amar@amar ~]$ ansible -i hosts all -m user -a "name=akash  state=present" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1001,
+    "home": "/home/akash",
+    "name": "akash",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1001
+}
+[amar@amar ~]$ cd /home/
+[amar@amar home]$ vi alfakilo.txt
+[amar@amar home]$ pwd
+/home
+[amar@amar home]$ ll
+total 4
+drwx------. 18 amar amar 4096 Mar 31 05:28 amar
+[amar@amar home]$ cd /home/amar/
+[amar@amar ~]$ pwd
+/home/amar
+[amar@amar ~]$ vi alfakilo.txt
+[amar@amar ~]$ ansible -i hosts all -m copy -a "src=/home/amar/alfakilo.txt dest=/tmp"
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: amar@192.168.1.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+[amar@amar ~]$ pwd
+/home/amar
+[amar@amar ~]$ ansible -i hosts all -m copy -a "src=/home/amar/alfakilo.txt dest=/tmp" -u root
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8
+(default, Sep 10 2021, 09:13:53) [GCC 8.5.0 20210514 (Red Hat 8.5.0-3)]. This feature will be removed from ansible-core in version 2.12.
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+192.168.1.102 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": true,
+    "checksum": "d9e6712eb662661d0799622942420fab19b5ac0e",
+    "dest": "/tmp/alfakilo.txt",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "ac7201c33550c96bc24715bc1e1dae0e",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "unconfined_u:object_r:admin_home_t:s0",
+    "size": 54,
+    "src": "/root/.ansible/tmp/ansible-tmp-1711877539.2094738-7475-75386403709394/source",
+    "state": "file",
+    "uid": 0
+}
